@@ -9,6 +9,8 @@ public class EnemyFSM : MonoBehaviour
 
     protected Transform enemy;
 
+     
+
     Vector3 randomPos;
 
     protected enum EnemyState
@@ -21,12 +23,12 @@ public class EnemyFSM : MonoBehaviour
 
     EnemyState enemyMode;
 
-
     [SerializeField]
     float health = 100f;
     public Transform player;
     public bool chase=false;
     public bool attack=false;
+   
 
     void Start()
     {
@@ -76,6 +78,8 @@ public class EnemyFSM : MonoBehaviour
                 }
                 break;
         }
+
+        Debug.Log(gameObject.name+enemyMode);
 
         //Move the enemy based on a state
         DoAction(player, enemyMode);
@@ -142,6 +146,8 @@ public class EnemyFSM : MonoBehaviour
             attack = false;
         }
     }
+
+ 
 }
 
 
