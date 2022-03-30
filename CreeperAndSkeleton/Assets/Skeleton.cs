@@ -26,12 +26,33 @@ namespace StatePattern
             switch (skeletonMode)
             {
                 case EnemyFSM.Attack:
+                    if (health <= 20f)
+                    {
+                        skeletonMode = EnemyFSM.Flee;
+                    }
+                    else if (distance >= 6f)
+                    {
+                        skeletonMode = EnemyFSM.MoveTowardsPlayer;
+                    }
                     break;
                 case EnemyFSM.Flee:
                     break;
                 case EnemyFSM.Stroll:
+                    if (distance <= 10f)
+                    {
+                        skeletonMode = EnemyFSM.MoveTowardsPlayer;
+                    }
                     break;
                 case EnemyFSM.MoveTowardsPlayer:
+                    if (distance <= 5f)
+                    {
+                        skeletonMode = EnemyFSM.Attack;
+                        break;
+                    }
+                    else if (distance >= 15f)
+                    {
+                        skeletonMode = EnemyFSM.Stroll;
+                    }
                     break;
             }
 

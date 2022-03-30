@@ -28,12 +28,36 @@ namespace StatePattern
             switch (creeperMode)
             {
                 case EnemyFSM.Attack:
+                    if (health <= 20f)
+                    {
+                        creeperMode = EnemyFSM.Flee;
+                    }
+                    else if (distance >= 2f)
+                    {
+                        creeperMode = EnemyFSM.MoveTowardsPlayer;
+                    }
                     break;
                 case EnemyFSM.Flee:
+                    if (health >= 60f)
+                    {
+                        creeperMode = EnemyFSM.Stroll;
+                    }
                     break;
                 case EnemyFSM.Stroll:
+                    if (distance <= 10f)
+                    {
+                        creeperMode = EnemyFSM.MoveTowardsPlayer;
+                    }                   
                     break;
                 case EnemyFSM.MoveTowardsPlayer:
+                    if (distance >= 15f)
+                    {
+                        creeperMode = EnemyFSM.Stroll;
+                    }
+                    else if (distance <= 1f)
+                    {
+                        creeperMode = EnemyFSM.Attack;
+                    }
                     break;
             }
 
