@@ -60,6 +60,7 @@
     <Compile Include="Assets\Skeleton.cs" />
     <Compile Include="Assets\GameController.cs" />
     <Compile Include="Assets\Enemy.cs" />
+    <Compile Include="Assets\EnemyFSM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
