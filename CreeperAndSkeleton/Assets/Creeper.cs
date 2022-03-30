@@ -7,13 +7,15 @@ namespace StatePattern
 {
     public class Creeper : Enemy
     {
-        EnemyFSM creeperMode = EnemyFSM.Stroll;
+        EnemyFSM creeperMode;
 
         float health = 100f;
 
         public Creeper(Transform creeper)
         {
             base.enemy = creeper;
+            //몬스터가 배회하는 것에서 시작.
+            creeperMode = EnemyFSM.Stroll;
         }
 
 

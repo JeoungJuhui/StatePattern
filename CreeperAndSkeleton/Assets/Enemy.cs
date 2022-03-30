@@ -10,9 +10,10 @@ namespace StatePattern
 
         protected Transform enemy;
 
-        Vector3 randomPos = new Vector3(Random.Range(0f, 10f), 0f, Random.Range(0f, 10f));
+        Vector3 randomPos = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
 
-        protected enum EnemyFSM
+        //Enemy FSM에서 제공하는 기능
+        protected enum EnemyFSM 
         {
             Attack,
             Flee,
@@ -40,19 +41,20 @@ namespace StatePattern
                     break;
                 case EnemyFSM.Flee:
                     enemy.rotation = Quaternion.LookRotation(enemy.position - player.position);
-                    //Move
+                    //플레이어의 반대방향으로 이동한다.
                     enemy.Translate(enemy.forward * fleeSpeed * Time.deltaTime);
                     break;
                 case EnemyFSM.Stroll:
                     if ( Vector3.Distance(randomPos, enemy.position) < 0.1f)
                     {
-                        randomPos = new Vector3(Random.Range(0f, 10f), 0f, Random.Range(0f, 10f));
+                        randomPos = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
                     }
                     enemy.rotation = Quaternion.LookRotation(enemy.position - randomPos);
-                    //Move
-                    enemy.Translate(enemy.forward * strollSpeed * Time.deltaTime);
+                    //랜덤 방향으로 계속해서 이동한다.
+                    enemy.Translate(enemy.forward * strollSpeed * Time.deltaTime); //정면으로 이동한다. 
                     break;
                 case EnemyFSM.MoveTowardsPlayer:
+                    //플레이어 방향으로 이동한다.
                     enemy.transform.position = Vector3.MoveTowards(enemy.transform.position, 
                         player.position, attackSpeed * Time.deltaTime);
                     break;
