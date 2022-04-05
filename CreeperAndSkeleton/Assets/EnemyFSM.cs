@@ -9,8 +9,6 @@ public class EnemyFSM : MonoBehaviour
 
     protected Transform enemy;
 
-     
-
     Vector3 randomPos;
 
     protected enum EnemyState
@@ -25,6 +23,7 @@ public class EnemyFSM : MonoBehaviour
 
     [SerializeField]
     float health = 100f;
+
     public Transform player;
     public bool chase=false;
     public bool attack=false;
@@ -36,6 +35,7 @@ public class EnemyFSM : MonoBehaviour
         enemy = gameObject.transform;
         enemyMode = EnemyState.Stroll;
         randomPos = new Vector3(Random.Range(-5f, 5f), 0f, Random.Range(-5f, 5f));
+        player = GameObject.Find("Player").transform;
     }
 
     // Update is called once per frame
